@@ -16,7 +16,6 @@ describe('PrecioService', () => {
       // Act
       const resultado = service.calcularImpuestos(subtotal, 'CR', 'CR');
       // Assert
-      // CR = 13% -> 1000 * 0.13 = 130
       expect(resultado).toBe(130);
     });
 
@@ -26,7 +25,6 @@ describe('PrecioService', () => {
       // Act
       const resultado = service.calcularImpuestos(subtotal, 'CR', 'US');
       // Assert
-      // CR = 13%, US = 7.5% -> promedio = 10.25% -> 1000 * 0.1025 = 102.5
       expect(resultado).toBe(102.5);
     });
 
@@ -36,7 +34,6 @@ describe('PrecioService', () => {
       // Act
       const resultado = service.calcularImpuestos(subtotal, 'CR', 'XX');
       // Assert
-      // CR = 13%, XX = 0% -> promedio = 6.5% -> 1000 * 0.065 = 65
       expect(resultado).toBe(65);
     });
   });
@@ -48,7 +45,6 @@ describe('PrecioService', () => {
       // Act
       const resultado = service.convertirMoneda(monto, 'EUR');
       // Assert
-      // 100 USD * 0.92 = 92 EUR
       expect(resultado).toBe(92);
     });
 
@@ -65,8 +61,8 @@ describe('PrecioService', () => {
   describe('evaluarOferta(precios, precioObjetivo)', () => {
     it('debe retornar "excelente" cuando el precio es significativamente menor al promedio.', () => {
       // Arrange
-      const precios = [500, 600, 700]; // promedio = 600
-      const precioObjetivo = 400;      // 400 < 600 * 0.80 = 480 -> excelente
+      const precios = [500, 600, 700];
+      const precioObjetivo = 400;
       // Act
       const resultado = service.evaluarOferta(precios, precioObjetivo);
       // Assert
